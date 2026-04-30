@@ -5,5 +5,3 @@
 </head>
 <body>
     <h1>Moonvale University</h1>
-</body>
-</html>
