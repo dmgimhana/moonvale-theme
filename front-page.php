@@ -28,14 +28,25 @@
           <h2 class="headline headline--small-plus t-center">Upcoming Events</h2>
 
           <?php
+             $today = date('Ymd');
+                $homepageEvents = new WP_Query(array(
+                  'posts_per_page' => -1,
+                  'post_type' => 'event',
+                  'meta_key' => 'event_date',
+                  'orderby' => 'meta_value_num',
+                  'order' => 'ASC',
+                  'meta_query' => array(
+                    array(
+                      'key' => 'event_date',
+                      'compare' => '>=',
+                      'value' => $today,
+                      'type' => 'numeric'
+                    )
+                  )
+                ));
 
-            $homePageEvents = new WP_Query(array(
-              'posts_per_page' => 2, 
-              'post_type' => 'event'
-            ));
-
-            while($homePageEvents->have_posts()){
-              $homePageEvents->the_post();?>
+            while($homepageEvents->have_posts()){
+              $homepageEvents->the_post();?>
 
                <div class="event-summary">
                   <a class="event-summary__date t-center" href="#">
