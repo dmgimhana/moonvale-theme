@@ -237,8 +237,9 @@ class Search {
     this.previousValue = this.searchField.val();
   }
   getResults() {
-    this.resultsDiv.html("Imagine real search results...");
-    this.isSpinnerVisible = false;
+    jquery__WEBPACK_IMPORTED_MODULE_0___default().getJSON("http://moonvale-university.local/wp-json/wp/v2/posts?search=" + this.searchField.val(), function (posts) {
+      alert(posts[0].title.rendered);
+    });
   }
   keyPressDispatcher(e) {
     if (e.keyCode == 83 && !this.isOverlayOpen && !jquery__WEBPACK_IMPORTED_MODULE_0___default()("input, textarea").is(":focus")) {
